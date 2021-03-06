@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>palindrome</title>
+	<meta charset="utf-8">
+	
+	<style type="text/css">
+		body{
+	margin: 0;
+}
+.pdiv{
+	background-color: rgb(222,222,222);
+	border-style: none;
+	position: relative;
+	left: 30%;
+	top: 300px;
+	height: 150px;
+	width: 40%;
+
+	
+}
+.pdiv p{
+	text-transform: capitalize;
+	font-size: medium;
+	position: absolute;
+	left: 5%;
+	top: 20px;
+}
+.pdiv input{
+	width: 80%;
+	height: 30px;
+	background-color: rgb(47,187,255);
+	position: absolute;
+	left: 10%;
+	top: 60px;
+	text-align: center;
+}
+button{
+background-color: rgb(255,255,255);
+width: 30%;
+height: 20px;
+position: absolute;
+left: 35%;
+top: 110px;
+text-align: center;
+text-transform: uppercase;
+font-weight: bold;
+font-size: medium;
+color: blue;
+
+}
+@media (max-width: 697px){ 
+	.pdiv{
+		background-color: rgb(222,222,222);
+		border-style: none;
+		position: relative;
+		height: 150px;
+		width: 100%;
+		top: 120px;
+		left: 0;
+	
+	}
+
+	.pdiv p{
+		text-transform: capitalize;
+		font-size: medium;
+		position: absolute;
+		left: 5%;
+		top: 20px;
+	}
+	.pdiv input{
+		width: 80%;
+		height: 30px;
+		background-color: rgb(47,187,255);
+		position: absolute;
+		left: 10%;
+		top: 60px;
+		text-align: center;
+	}
+	button{
+	background-color: rgb(255,255,255);
+	width: 30%;
+	height: 20px;
+	position: absolute;
+	left: 35%;
+	top: 110px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: medium;
+	color: blue;
+
+	}
+}
+</style>
+
+<script type="text/javascript">
+	function transform(e){
+		var bouton=document.getElementById('bouton');
+		e.style.backgroundColor="white";
+		e.style.borderColor="blue";
+		bouton.style.backgroundColor="rgb(39,239,69)";
+		bouton.style.color="white";
+	}
+</script>
+</head>
+<body>
+<div class="pdiv" id="pdiv">
+	<p>saisissez une chaine palindrome  :</p>
+	<input type="text" name="chaine" id="champ" autofocus="autofocus" onblur="transform(this)">
+	<br>
+	<br>
+	<button id="bouton">valider</button>
+	<script type="text/javascript">
+		var bouton=document.getElementById('bouton');
+		var pdiv=document.getElementById('pdiv');
+		bouton.addEventListener('click',palindrome);
+		function palindrome(){
+			var contenu=document.getElementById('champ');
+			var tex=contenu.value;
+			var longueur=tex.length;
+			if(longueur == 0){
+				event.preventDefault();
+			}
+			else if(longueur % 2 !=0){
+				pdiv.style.backgroundColor="rgb(255,102,102)";
+				pdiv.style.borderColor="red";
+				bouton.style.backgroundColor="white";
+				bouton.style.color="black";
+				alert('la chaine nest pas palindrome du debut');
+			}
+			else{
+				var i=longueur-1;
+				var j=0;
+				while((j< longueur / 2) &&(i>=longueur / 2)){
+					if (tex[j] == tex[i]) {
+						j++;
+						i--;
+						
+						continue;
+					}
+					else{
+						pdiv.style.backgroundColor="rgb(255,102,102)";
+				        pdiv.style.borderColor="red";
+				        bouton.style.backgroundColor="white";
+				        bouton.style.color="black";
+						alert('pas palindrome des le boucle');
+						break;
+					}
+				}
+				if( i < longueur / 2){
+					pdiv.style.backgroundColor="rgb(39,239,69)";
+				    pdiv.style.borderColor="green";
+				    bouton.style.backgroundColor="white";
+				    bouton.style.color="black";
+					alert('ce chaine est palindrome');
+				}
+			}
+
+		}
+	</script>
+</div>
+</body>
+</html>
